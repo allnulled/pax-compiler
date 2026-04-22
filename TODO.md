@@ -1,0 +1,16 @@
+- [x] Que el algoritmo ordene las dependencias
+   - [x] por orden
+   - [x] conforme use Pax.module(...) y Pax.static(...)
+   - [x] conforme los módulos que se usan dentro
+   - [x] conforme los 3 waves
+   - [ ] detectando circularidad y bloqueándola
+- [ ] Que el algoritmo genere javascript correcto
+   - [ ] Plantilla mínima por cada dependencia
+   - [ ] Todo wrapeado
+   - [ ] Que reutilice la instancia de Pax
+   - [ ] En ficheros aparte
+   - [ ] Con soporte para drivers
+- [ ] Que se acuerde de los módulos iniciales
+   - [ ] Que se pueda hacer Pax.resetCore() por ejemplo
+   - [ ] Y se quede solo con las dependencias iniciales
+   - [ ] Y aquí exploraríamos si se puede hacer algo con los WeakCollection para saber si existe o no un módulo en memoria todavía

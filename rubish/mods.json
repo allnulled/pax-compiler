@@ -1,0 +1,113 @@
+[
+    {
+        "created": "2026-04-20T20:56:13.494Z",
+        "extension": "js",
+        "target": "pax_compiler/test/entry.js",
+        "source": "console.log(\"in entry\");\nPax.layer(0).module(\"{@}/std/kit/basic.js\");\nPax.layer(3).static(\"{@}/std/kit/basic.js\");\nPax.static(\"{@}/std/kit/basic.js\");\nPax.module(\"{@}/std/kit/basic.js\");\nPax.module(\"pax_compiler/test/topics/001. Sorts modules/mod1.js\");\nPax.module(\"pax_compiler/test/topics/001. Sorts modules/mod2.js\");\nPax.module(\"pax_compiler/test/topics/001. Sorts modules/mod3.js\");",
+        "metadata": [
+            {
+                "type": "Pax/dependency",
+                "layer": 0,
+                "subtype": "module",
+                "id": "{@}/std/kit/basic.js",
+                "match": "Pax.layer(0).module(\"{@}/std/kit/basic.js\")",
+                "count": 0,
+                "size": 43,
+                "pos": 25
+            },
+            {
+                "type": "Pax/dependency",
+                "layer": 3,
+                "subtype": "static",
+                "id": "{@}/std/kit/basic.js",
+                "match": "Pax.layer(3).static(\"{@}/std/kit/basic.js\")",
+                "count": 1,
+                "size": 43,
+                "pos": 70
+            },
+            {
+                "type": "Pax/dependency",
+                "subtype": "static",
+                "id": "{@}/std/kit/basic.js",
+                "match": "Pax.static(\"{@}/std/kit/basic.js\")",
+                "count": 2,
+                "size": 34,
+                "pos": 115
+            },
+            {
+                "type": "Pax/dependency",
+                "subtype": "module",
+                "id": "{@}/std/kit/basic.js",
+                "match": "Pax.module(\"{@}/std/kit/basic.js\")",
+                "count": 3,
+                "size": 34,
+                "pos": 151
+            },
+            {
+                "type": "Pax/dependency",
+                "subtype": "module",
+                "id": "pax_compiler/test/topics/001. Sorts modules/mod1.js",
+                "match": "Pax.module(\"pax_compiler/test/topics/001. Sorts modules/mod1.js\")",
+                "count": 4,
+                "size": 43,
+                "pos": 187
+            },
+            {
+                "type": "Pax/dependency",
+                "subtype": "module",
+                "id": "pax_compiler/test/topics/001. Sorts modules/mod2.js",
+                "match": "Pax.module(\"pax_compiler/test/topics/001. Sorts modules/mod2.js\")",
+                "count": 5,
+                "size": 43,
+                "pos": 232
+            },
+            {
+                "type": "Pax/dependency",
+                "subtype": "module",
+                "id": "pax_compiler/test/topics/001. Sorts modules/mod3.js",
+                "match": "Pax.module(\"pax_compiler/test/topics/001. Sorts modules/mod3.js\")",
+                "count": 6,
+                "size": 43,
+                "pos": 277
+            }
+        ],
+        "isSolved": true,
+        "jsSource": "// some js code"
+    },
+    {
+        "created": "2026-04-20T20:56:13.495Z",
+        "extension": "js",
+        "target": "pax_modules/std/kit/basic.js",
+        "source": "console.log(\"Hello\");\n",
+        "metadata": [],
+        "isSolved": true,
+        "jsSource": "// some js code"
+    },
+    {
+        "created": "2026-04-20T20:56:13.496Z",
+        "extension": "js",
+        "target": "pax_compiler/test/topics/001. Sorts modules/mod1.js",
+        "source": "console.log(\"mod1!\");",
+        "metadata": [],
+        "isSolved": true,
+        "jsSource": "// some js code"
+    },
+    {
+        "created": "2026-04-20T20:56:13.496Z",
+        "extension": "js",
+        "target": "pax_compiler/test/topics/001. Sorts modules/mod2.js",
+        "source": "console.log(\"mod2!\");",
+        "metadata": [],
+        "isSolved": true,
+        "jsSource": "// some js code"
+    },
+    {
+        "created": "2026-04-20T20:56:13.496Z",
+        "extension": "js",
+        "target": "pax_compiler/test/topics/001. Sorts modules/mod3.js",
+        "source": "console.log(\"mod3!\");",
+        "metadata": [],
+        "isSolved": true,
+        "jsSource": "// some js code"
+    }
+]
