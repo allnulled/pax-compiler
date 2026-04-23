@@ -32,5 +32,10 @@ module.exports = {
   includeModuleExportsBody: function(...args) {
     const source = this.renderFile(...args);
     return this.extractModuleExportsBodyFromSource(source);
+  },
+  prettyLines: function(texto, joiner = "\n + ") {
+    const allLines = texto.split("\n");
+    const lastLine = allLines.length - 1;
+    return allLines.map((line,i) => JSON.stringify(line + (i !== lastLine ? "\n" : ""))).join(joiner);
   }
 };

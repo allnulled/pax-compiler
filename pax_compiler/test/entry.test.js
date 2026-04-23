@@ -4,6 +4,6 @@ module.exports = function(compilation) {
   console.log("comps:", compilation.output);
   // PaxCompiler.assert(compilation.output.js.length, { message: "compilation.output.js.length should not be 0" });
   const output = __dirname + "/entry.dist.js";
-  require("fs").writeFileSync(output, compilation.jsSource, "utf8");
+  require("fs").writeFileSync(output, compilation.output.js, "utf8");
   require(output);
 }

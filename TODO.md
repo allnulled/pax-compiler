@@ -11,6 +11,11 @@
    - [ ] En ficheros aparte
    - [ ] Con soporte para drivers
 - [ ] Que se acuerde de los módulos iniciales
-   - [ ] Que se pueda hacer Pax.resetCore() por ejemplo
+   - [ ] Que se pueda hacer Pax.release() por ejemplo
    - [ ] Y se quede solo con las dependencias iniciales
    - [ ] Y aquí exploraríamos si se puede hacer algo con los WeakCollection para saber si existe o no un módulo en memoria todavía
+- [ ] Hay que hacer una CLI también que permita:
+   - [ ] «pax compile» con las opciones:
+      - [ ] --entry file.js => ruta al fichero de entrada
+      - [ ] --output dist/dist => ruta de fichero (sin extensión) para el js y el css de salida
+      - [ ] --basedir . => el basedir del PaxCompiler
