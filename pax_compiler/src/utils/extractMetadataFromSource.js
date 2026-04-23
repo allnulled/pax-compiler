@@ -6,12 +6,10 @@ module.exports = function(source, compilation) {
   Extract_matches:
   for(let it of regexMatches) {
     const [match, ...groups] = it;
-    const layer = groups.length >= 2 ? groups[0] : undefined;
-    const subtype = groups.length >= 2 ? groups[1] : groups[0];
-    const refModule = groups.length >= 2 ? groups[2] : groups[1];
+    const refModule = groups[1];
+    const subtype = groups[0];
     const item = new compilation.compiler.constructor.classes.DependencyDescriptor({
       type: "Pax/dependency",
-      layer: typeof layer !== "string" ? layer : parseInt(layer.substring(7, layer.length-1)),
       subtype,
       id: refModule,
       match,

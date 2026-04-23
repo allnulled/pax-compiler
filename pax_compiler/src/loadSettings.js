@@ -1,6 +1,6 @@
-module.exports = async function () {
+module.exports = async function (force = false) {
   trace("PaxCompiler.prototype.loadSettings", arguments, false);
-  if(this.settings) {
+  if(this.settings && (!force)) {
     return this.settings;
   }
   const settingsJson = await this.constructor.utils.fetchResource("pax_settings.json");

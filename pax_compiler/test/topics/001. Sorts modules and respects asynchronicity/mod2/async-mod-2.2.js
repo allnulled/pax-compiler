@@ -1,0 +1,1 @@
+module.exports = Pax.async("pax_compiler/test/topics/001. Sorts modules and respects asynchronicity/mod2/async-mod-2.2.1.js");

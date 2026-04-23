@@ -68,12 +68,12 @@ Realmente, se ha hecho para simplificar mucho las cosas, al punto que solo tiene
 - Exporta módulos síncronos (cualquier valor) o asíncronos (Promise o immediately called async functions)
    - con la sintaxis única de `module.exports` tanto en node.js como en browser
 - Importa módulos síncronos (valores) o asíncronos (valores devueltos por una Promise)
-   - Usa `Pax.module("path/to/file.js")` para importar valores síncronamente
-   - Usa `Pax.static("path/to/file.js")` para importar valores asíncronamente
+   - Usa `Pax.sync("path/to/file.js")` para importar valores síncronamente
+   - Usa `Pax.async("path/to/file.js")` para importar valores asíncronamente
       - Sin usar `await` porque el módulo ya está resuelto
          - que es la principal gracia de la librería
          - que es el por qué `pak` no lo consiguió todo
    - Usa `Pax.$module["path/to/file.js"]` para saltarte el análisis del compilador y acceder a los módulos igual
 - Usa `drivers.json` para expandir shortnames de rutas
 
-Principalmente, esto es lo que tienes que saber. Esto es el nicho que soluciona esta librería. Podemos extendernos en la teoría y tal, pero esencialmente, es esto, que puedas usar `Pax.static` para acceder a módulos que se cargan de forma asíncrona.
+Principalmente, esto es lo que tienes que saber. Esto es el nicho que soluciona esta librería. Podemos extendernos en la teoría y tal, pero esencialmente, es esto, que puedas usar `Pax.async` para acceder a módulos que se cargan de forma asíncrona.

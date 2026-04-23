@@ -22,7 +22,7 @@ module.exports = function(compilation) {
     if(extension === "js") {
       const currentIndex = ("" + (counter++)) + "/" + size;
       let moduleHeader = "";
-      moduleHeader += `🟢 ${currentIndex}: Pax.$modules["${moduleId}"] 🟢`;
+      moduleHeader += `🟢 ${currentIndex}: Pax.modules["${moduleId}"] 🟢`;
       moduleHeader = this.surroundTextAscii(moduleHeader, "// ", 0);
       js += moduleHeader;
       js += jsSource;
@@ -35,7 +35,7 @@ module.exports = function(compilation) {
   counter = 1;
   let maxLength = 0;
   for(const moduleId in allModules) {
-    const line = `\n🔹 nº${counter++}: Pax.$modules["${moduleId}"]`;
+    const line = `\n🔹 nº${counter++}: Pax.modules["${moduleId}"]`;
     code += line;
     if(maxLength < line.length) {
       maxLength = line.length;

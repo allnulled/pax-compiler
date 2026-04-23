@@ -1,10 +1,10 @@
 module.exports = {
-  $modules: {},
-  settings: {},
-  module: function(id) {
-    return this.$modules[id];
+  modules: {},
+  settings: __SETTINGS__,
+  sync: function(id) {
+    return this.modules[id];
   },
-  static: function(id) {
-    return this.$modules[id];
+  async: function(id) {
+    return this.modules[id];
   },
 };

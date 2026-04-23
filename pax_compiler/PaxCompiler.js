@@ -11,9 +11,9 @@
   }
 })(function () {
   const die = (...args) => { console.log(...args); process.exit(0); };
-  const PaxTracer = <%- PaxBuilder.includeModuleExportsBody("pax_compiler/PaxTracer.discreto.js") %>;
+  const PaxTracer = <%- PaxBuilder.includeModuleExportsBody("pax_compiler/PaxTracer.js") %>;
   PaxTracer.isTracing = true;
-  PaxTracer.hasTraceFilters = ("compileModule").split("|").filter(it => it !== "");
+  PaxTracer.hasTraceFilters = ("").split("|").filter(it => it !== "");
   PaxTracer.hasTraceDebuggers = ("").split("|").filter(it => it !== "");
   const trace = PaxTracer.getTraceFunction();
   const PaxCompiler = class {

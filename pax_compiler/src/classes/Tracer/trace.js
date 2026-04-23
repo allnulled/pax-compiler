@@ -1,5 +1,5 @@
-module.exports = function (method, args = [], showValues = false) {
-  if (!PaxTracer.isTracing) return false;
+module.exports = function (method, args = [], force = false, showValues = false) {
+  if ((!PaxTracer.isTracing) && (!force)) return false;
   let isMatchedByDebuggers = false;
   Debugger_layer: {
     if (!PaxTracer.hasTraceDebuggers.length) break Debugger_layer;
@@ -30,8 +30,10 @@ module.exports = function (method, args = [], showValues = false) {
     }
   }
   msg += `]`;
-  if (!PaxTracer.hasTraceFilters.length) return false;
   Filter_layer: {
+    if (!PaxTracer.hasTraceFilters.length) {
+      break Filter_layer;
+    }
     if (PaxTracer.hasTraceFilters[0] === "*") {
       break Filter_layer;
     }

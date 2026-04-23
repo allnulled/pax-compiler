@@ -1,19 +1,23 @@
+- [ ] Cambiar module y static por sync y async
+- [ ] Preparar tests independientes y automáticos
+- [ ] Tests para:
+   - [ ] 1. Ordena bien los módulos
+
+
+----
+
 - [x] Que el algoritmo ordene las dependencias
    - [x] por orden
-   - [x] conforme use Pax.module(...) y Pax.static(...)
+   - [x] conforme use Pax.sync(...) y Pax.async(...)
    - [x] conforme los módulos que se usan dentro
    - [x] conforme los 3 waves
    - [ ] detectando circularidad y bloqueándola
-- [ ] Que el algoritmo genere javascript correcto
-   - [ ] Plantilla mínima por cada dependencia
-   - [ ] Todo wrapeado
-   - [ ] Que reutilice la instancia de Pax
-   - [ ] En ficheros aparte
+- [x] Que el algoritmo genere javascript correcto
+   - [x] Plantilla mínima por cada dependencia
+   - [x] Todo wrapeado
+   - [x] Que reutilice la instancia de Pax
+   - [x] En ficheros aparte
    - [ ] Con soporte para drivers
-- [ ] Que se acuerde de los módulos iniciales
-   - [ ] Que se pueda hacer Pax.release() por ejemplo
-   - [ ] Y se quede solo con las dependencias iniciales
-   - [ ] Y aquí exploraríamos si se puede hacer algo con los WeakCollection para saber si existe o no un módulo en memoria todavía
 - [ ] Hay que hacer una CLI también que permita:
    - [ ] «pax compile» con las opciones:
       - [ ] --entry file.js => ruta al fichero de entrada

@@ -8,6 +8,8 @@ refrescador \
   --watch 'pax-compiler.src.js' \
   --watch 'dev.sh' \
   --watch 'package.json' \
+  --ignore '**/*.dist.js' \
+  --ignore '**/*.made.js' \
   --extensions js \
   --extensions html \
   --extensions css \

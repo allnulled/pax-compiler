@@ -1,5 +1,5 @@
 module.exports = async function(input, compilation) {
-  trace("PaxCompiler.utils.compileModule", arguments, true);
+  trace("PaxCompiler.utils.compileModule", arguments, false, false);
   const target = compilation.compiler.resolveRelative(input);
   const source = await this.fetchResource(target);
   if(target.endsWith(".js")) await this.compileJsModule(target, source, compilation);

@@ -6,7 +6,7 @@ module.exports = function(moduleDescriptor, compilation) {
   js += `  try {\n`;
   js += `    ${moduleDescriptor.source.split("\n").join("\n    ")}\n`;
   js += `  } finally {\n`;
-  js += `    Pax.$modules[${targetStringified}] = module.exports;\n`;
+  js += `    Pax.modules[${targetStringified}] = module.exports;\n`;
   js += `  }\n`;
   js += `})({ exports: undefined });`;
   moduleDescriptor.jsSource = js;

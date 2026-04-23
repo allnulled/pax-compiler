@@ -20,7 +20,7 @@ module.exports = class {
     this.generate();
   }
   getLayerFromSubtype(subtype) {
-    return subtype === "module" ? 1 : subtype === "static" ? 2 : 1;
+    return subtype === "sync" ? 1 : subtype === "async" ? 2 : 1;
   }
   classifyModule(key, allModules = {}) {
     trace("SourceGeneration.prototype.classifyModule");
@@ -78,13 +78,27 @@ module.exports = class {
     return joiner + [top, ...contenido, bottom].join("\n" + joiner);
   }
   sourcifySyncModule(id, counter) {
+    trace("SourceGeneration.prototype.sourcifySyncModule");
     let js = "";
-    js += this.rectanglify(`@module[${counter}]: Pax.$modules["${id}"]`) + "\n";
+    js += this.rectanglify(`@module[${counter}]: Pax.modules["${id}"]`) + "\n";
     js += `  (function(module) {\n`;
     js += `    try {\n`;
     js += this.tabify(this.compilation.jsModulesData[id].source, 6);
     js += `\n    } finally {\n`;
-    js += `      Pax.$modules["${id}"] = module.exports;\n`;
+    js += `      Pax.modules["${id}"] = module.exports;\n`;
+    js += `    }\n`;
+    js += `  })({ exports: undefined });\n`;
+    return js;
+  }
+  sourcifyAsyncModule(id, counter) {
+    trace("SourceGeneration.prototype.sourcifyAsyncModule");
+    let js = "";
+    js += this.rectanglify(`@module[${counter}]: (async) Pax.modules["${id}"]`) + "\n";
+    js += `  (function(module) {\n`;
+    js += `    try {\n`;
+    js += this.tabify(this.compilation.jsModulesData[id].source, 6);
+    js += `\n    } finally {\n`;
+    js += `      Pax.modules["${id}"] = module.exports;\n`;
     js += `    }\n`;
     js += `  })({ exports: undefined });\n`;
     return js;
@@ -95,8 +109,9 @@ module.exports = class {
   }
   generate() {
     trace("SourceGeneration.prototype.generate");
-    let header = "";
-    Header_comment: {
+    const bundleHeader = () => {
+      console.log(this);
+      let header = "";
       header += "Pax module";
       header += "\n----";
       let counter = 1;
@@ -114,30 +129,32 @@ module.exports = class {
         }
       }
       header = this.rectanglify(header) + "\n";
-    }
-    let globalPax = function (content) {
+      return header;
+    };
+    let globalPax = (content, settings) => {
       let api = "";
       api += `(function(Pax) {\n`;
       api += `${content}`;
+      api += this.rectanglify("Pax Minimal API") + "\n";
       api += `})(typeof Pax !== "undefined" ? Pax : `;
-      api += <%- PaxBuilder.prettyLines(PaxBuilder.includeModuleExportsBody("pax_compiler/Pax.js"), ";\napi += ") %>;
+      api += <%- JSON.stringify(PaxBuilder.includeModuleExportsBody("pax_compiler/Pax.js")) %>.replace("__SETTINGS__", JSON.stringify(settings));
       api += `);`;
       return api;
     }
-    let js = '';
+    let body = '';
     Js_content: {
       const allSteps = this.output.steps;
       let counter = 1;
-      for(let indexStep=0; indexStep<allSteps.length; indexStep++) {
+      for (let indexStep = 0; indexStep < allSteps.length; indexStep++) {
         const step = allSteps[indexStep];
-        const sourcify = step === 2 ? this.sourcifySyncModule.bind(this) : this.sourcifySyncModule.bind(this);
-        for(let indexModule=0; indexModule<step.length; indexModule++) {
+        const sourcify = indexStep === 2 ? this.sourcifyAsyncModule.bind(this) : this.sourcifySyncModule.bind(this);
+        for (let indexModule = 0; indexModule < step.length; indexModule++) {
           const moduleId = step[indexModule];
-          js += sourcify(moduleId, counter++);
+          body += sourcify(moduleId, counter++);
         }
       }
     }
-    this.output.js += header;
-    this.output.js += globalPax(js);
+    this.output.js += bundleHeader();
+    this.output.js += globalPax(body, this.compilation.compiler.settings || {});
   }
 }
