@@ -18,9 +18,9 @@ Con `npm install` usas:
 - `ejs` para renderizar las plantillas que componen el compilador.
 - `js-beautify` para embellecer el código JavaScript que se compila.
 
-## Alterar el compilar de Pax
+## Alterar la compilación de Pax
 
-Para iniciar desarrollo personalizado del compilador, en `dev.sh` tienes el ejemplo para usar con [`allnulled@refrescador`](https://github.com/allnulled/refrescador), pero en esencia son estos 2 comandos:
+Para iniciar desarrollo personalizado del compilador (necesitas compilarlo 1 vez porque la ruta del `basedir` necesita pillarla del PC), en `dev.sh` tienes el ejemplo para usar con [`allnulled@refrescador`](https://github.com/allnulled/refrescador), pero en esencia son estos 2 comandos:
 
 ```sh
 node pax_compiler/make.js          # reconstruye el compilador desde los fuentes y plantillas

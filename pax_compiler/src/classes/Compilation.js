@@ -21,5 +21,6 @@ module.exports = class {
     });
   }
   progression = ["created", "started", "completed"];
+  formatDate = <%- PaxBuilder.includeModuleExportsBody("pax_compiler/src/classes/Compilation/formatDate.js") %>
   start = <%- PaxBuilder.includeModuleExportsBody("pax_compiler/src/classes/Compilation/start.js") %>
 };

@@ -12,9 +12,6 @@
 })(function () {
   const die = (...args) => { console.log(...args); process.exit(0); };
   const PaxTracer = <%- PaxBuilder.includeModuleExportsBody("pax_compiler/PaxTracer.js") %>;
-  PaxTracer.isTracing = true;
-  PaxTracer.hasTraceFilters = ("").split("|").filter(it => it !== "");
-  PaxTracer.hasTraceDebuggers = ("").split("|").filter(it => it !== "");
   const trace = PaxTracer.getTraceFunction();
   const PaxCompiler = class {
     static create(...args) {
@@ -46,7 +43,6 @@
       fetchResource: <%- PaxBuilder.includeModuleExportsBody("pax_compiler/src/utils/fetchResource.js") %>,
       indentText: <%- PaxBuilder.includeModuleExportsBody("pax_compiler/src/utils/indentText.js") %>,
       extractMetadataFromSource: <%- PaxBuilder.includeModuleExportsBody("pax_compiler/src/utils/extractMetadataFromSource.js") %>,
-      makeJsModuleSource: <%- PaxBuilder.includeModuleExportsBody("pax_compiler/src/utils/makeJsModuleSource.js") %>,
       generateSources: <%- PaxBuilder.includeModuleExportsBody("pax_compiler/src/utils/generateSources.js") %>,
     }
     assert = <%- PaxBuilder.includeModuleExportsBody("pax_compiler/src/assert.js") %>;
@@ -56,9 +52,6 @@
     loadSettings = <%- PaxBuilder.includeModuleExportsBody("pax_compiler/src/loadSettings.js") %>;
     compile = <%- PaxBuilder.includeModuleExportsBody("pax_compiler/src/compile.js") %>;
   };
-
   PaxCompiler.global = PaxCompiler.create();
-
   return PaxCompiler;
-
 });

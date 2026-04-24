@@ -1,7 +1,19 @@
-- [ ] Cambiar module y static por sync y async
-- [ ] Preparar tests independientes y automáticos
-- [ ] Tests para:
-   - [ ] 1. Ordena bien los módulos
+- [x] Cambiar module y static por sync y async
+- [x] Preparar tests independientes y automáticos
+- [ ] Completar la carga asíncrona step[2]:
+   - [ ] Si el pack tiene asyncs, el entry es automáticamente wrapeado en un `(async function() { ${code} })()`
+      - [ ] Y en el entry puedes usar el `await` en tabulación 0.
+   - [ ] La cosa es la siguiente:
+
+El pack que tiene async dentro es:
+
+```js
+module.exports = Promise.all([ ...dependencias ]).then(function() {
+   // aquí el código del módulo realmente.
+});
+```
+
+El compiler puede ocuparse de esto?
 
 
 ----

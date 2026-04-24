@@ -1,6 +1,7 @@
 module.exports = function(moduleDescriptor, compilation) {
   trace("PaxCompiler.utils.makeModuleSource", arguments, false);
   const targetStringified = JSON.stringify(moduleDescriptor.target);
+  die(moduleDescriptor);
   let js = "";
   js += `(function(module) {\n`;
   js += `  try {\n`;

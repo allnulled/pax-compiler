@@ -18,6 +18,8 @@ const main = async function () {
     const testFile = path.resolve(topicsDir, dir, "test.js").replace(PaxCompiler.global.basedir + "/", "");
     js += `Pax.async(${JSON.stringify(testFile)});\n`;
   }
+  const testPayload = fs.readFileSync(__dirname + "/entry.payload.js").toString();
+  js += "\n" + testPayload;
   fs.writeFileSync(testEntry, js, "utf8");
   const compilation = await PaxCompiler.global.compile(testEntry);
   require("fs").writeFileSync(testOutput, compilation.output.js, "utf8");

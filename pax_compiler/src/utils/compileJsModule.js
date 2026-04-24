@@ -13,9 +13,6 @@ module.exports = async function (target, source, compilation) {
     // 4. Procesa enteramente (hasta persistencia) sus dependencias:
     phase = "Compiling dependencies";
     await this.compileDependencies(moduleDescriptor, compilation);
-    // 5. Se construye su propio código:
-    phase = "Making js module source";
-    await this.makeJsModuleSource(moduleDescriptor, compilation);
     // 6. Se marca como resuelto en la compilación:
     phase = "Persist module";
     await this.persistModule(moduleDescriptor, compilation);
