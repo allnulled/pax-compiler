@@ -1,5 +1,5 @@
 module.exports = class {
-  static isTracing = false;
+  static isTracing = true;
   static getTraceFunction() {
     return this.trace.bind(this);
   }

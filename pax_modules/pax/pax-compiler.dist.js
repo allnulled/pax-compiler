@@ -15,7 +15,7 @@
     process.exit(0);
   };
   const PaxTracer = class {
-    static isTracing = false;
+    static isTracing = true;
     static getTraceFunction() {
       return this.trace.bind(this);
     }
@@ -229,9 +229,11 @@
         getLayerFromSubtype(subtype) {
           return subtype === "sync" ? 1 : subtype === "async" ? 2 : 0;
         }
-        classifyModule(key, allModules = {}) {
+        classifyModule(keyInCode, allModules = {}) {
           trace("SourceGeneration.prototype.classifyModule");
           // Don't repeat module nesting:
+          const key = this.compilation.compiler.resolveDriver(keyInCode);
+          console.log(key);
           if (key in this.output.modules) {
             return this.output.modules[key];
           }
@@ -393,7 +395,7 @@
             api += `${content}`;
             api += this.rectanglify("Pax Minimal API") + "\n";
             api += `})(typeof Pax !== "undefined" ? Pax : `;
-            api += "{\n  modules: {},\n  promises: {},\n  settings: __SETTINGS__,\n  sync: function(id) {\n    return this.modules[id];\n  },\n  async: function(id) {\n    return this.modules[id];\n  },\n}".replace("__SETTINGS__", JSON.stringify(settings));
+            api += "{\n  modules: {},\n  promises: {},\n  settings: __SETTINGS__,\n  resolveDriver: function(text) {\n    let output = text;\n    const drivers = this.settings?.drivers || {};\n    for(const key in drivers) {\n      const value = drivers[key];\n      output = text.replace(key, value);\n    }\n    return output;\n  },\n  find: function(id) {\n    const normalizedId = this.resolveDriver(id);\n    if(!(normalizedId in this.modules)) {\n      throw new Error(`Module not found by Pax: «${normalizedId}»`);\n    }\n    return this.modules[normalizedId];\n  },\n  sync: function(id) {\n    return this.find(id);\n  },\n  async: function(id) {\n    return this.find(id);\n  },\n}".replace("__SETTINGS__", JSON.stringify(settings));
             api += `);`;
             return api;
           }

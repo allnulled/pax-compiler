@@ -22,9 +22,11 @@ module.exports = class {
   getLayerFromSubtype(subtype) {
     return subtype === "sync" ? 1 : subtype === "async" ? 2 : 0;
   }
-  classifyModule(key, allModules = {}) {
+  classifyModule(keyInCode, allModules = {}) {
     trace("SourceGeneration.prototype.classifyModule");
     // Don't repeat module nesting:
+    const key = this.compilation.compiler.resolveDriver(keyInCode);
+    console.log(key);
     if (key in this.output.modules) {
       return this.output.modules[key];
     }
